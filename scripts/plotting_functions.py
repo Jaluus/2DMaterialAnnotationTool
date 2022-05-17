@@ -74,9 +74,15 @@ def myHeatmap(x, y, sigma, bins=1000, extent=None):
     return heatmap.T, extent
 
 
-def add_legend(ax,scatter, title = "Sets"):
+def add_legend(ax,scatter, title = "Sets", legend_names = None):
     leg = ax.legend(*scatter.legend_elements(), title=title)
     for lh in leg.legendHandles:
         lh._legmarker.set_alpha(1)
+    
+    if legend_names is not None:
+        legend_text = leg.get_texts()
+        for i, lt in enumerate(legend_text):
+            lt.set_text(legend_names[i])  
+    
     ax.add_artist(leg)
     

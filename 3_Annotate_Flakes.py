@@ -1,10 +1,16 @@
-from runpy import run_module
 import cv2
 import numpy as np
 import os
 
-IMAGE_DIR = r"C:\Users\Uslu.INSTITUT2B\Desktop\Annotated_Images\Graphene\Set_7\Images"
-MASK_SAVE_DIR = r"C:\Users\Uslu.INSTITUT2B\Desktop\Annotated_Images\Graphene\Set_7\Masks_Human_Annotated"
+ANNOTATED_IMAGES_DIR = r"C:\Users\Uslu.INSTITUT2B\Desktop\Annotated_Images"
+
+SET_NAME = "Set_10"
+MATERIAL = "Graphene"
+
+SET_DIR = os.path.join(ANNOTATED_IMAGES_DIR, MATERIAL, SET_NAME)
+
+IMAGE_DIR = os.path.join(SET_DIR, "Images")
+MASK_SAVE_DIR = os.path.join(SET_DIR, "Masks_Human_Annotated")
 IMAGE_NAMES = [name for name in os.listdir(IMAGE_DIR) if name.endswith(".png")]
 IMAGE_PATHS = [os.path.join(IMAGE_DIR, name) for name in IMAGE_NAMES]
 
@@ -73,7 +79,7 @@ while True:
         f"{IMAGE_NAMES[current_idx]} | {current_idx + 1 }/{len(IMAGE_PATHS)}",
     )
 
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(10)
 
     if key == 27:
         break
