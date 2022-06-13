@@ -106,12 +106,13 @@ while True:
     if marks_updated:
 
         current_image_display = current_image_marked.copy()
-
         marker_image_copy = marker_image.copy()
+
+        # run the watershed algorithm with the chosen markers
         cv2.watershed(current_image, marker_image_copy)
 
+        # create a mask of the watershed segments
         watershed_segments = np.zeros(current_image.shape, dtype=np.uint8)
-
         watershed_segments[marker_image_copy == 1] = [0, 0, 255]
         watershed_segments[marker_image_copy == 2] = 0
 
